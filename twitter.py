@@ -1,4 +1,7 @@
-def get_tweets(twitter_v2, query):
+from stock import extract_tickers
+
+
+def get_tweets(twitter_v2, query, since_id=None):
     """Gets text content of 10 latest tweets that match the Twitter API V2 query passed in.
 
     Args:
@@ -8,6 +11,14 @@ def get_tweets(twitter_v2, query):
     Returns:
         list(string): text content of tweets. Max length of 10.
     """
-    get_text = lambda tweet: tweet.text
-    tweets = twitter_v2.search_recent_tweets(query).data
-    return list(map(get_text, tweets))
+    return twitter_v2.search_recent_tweets(query, since_id=since_id).data or []
+
+
+def filter_stock_tweets(tweets):
+    """Returns list of Tweet objects that have stock tickers
+
+    Args:
+        tweets (list(Tweet)): List of tweets to filter
+    """
+    tweet_has_tickers = lambda tweet: len(extract_tickers(tweet.text)) > 0
+    return list(filter(tweet_has_tickers, tweets))

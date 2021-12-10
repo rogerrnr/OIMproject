@@ -8,6 +8,7 @@ import time
 twilioCli = Client(accountSID, authToken)
 myTwilioNumber = '+17162815007'
 myCellPhone = '+18454180950'
+myCellPhone2 = '+12068180891'
 
 
 
@@ -17,7 +18,8 @@ def txtself(message):
     This is a function that sends a message to our phone numbers
     """
     twilioCli.messages.create(body= f'{message}', from_= myTwilioNumber, to= myCellPhone)
-
+    twilioCli.messages.create(body= f'{message}', from_= myTwilioNumber, to= myCellPhone2)
+    
 # txtself("Hey, was good homie")
 
 

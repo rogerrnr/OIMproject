@@ -1,6 +1,6 @@
 from twilio.rest import Client, TwilioClient
-from configTWL import accountSID
-from configTWL import authToken
+from config import accountSID
+from config import authToken
 import emoji
 import time
 
@@ -11,11 +11,9 @@ myCellPhone = '+18454180950'
 myCellPhone2 = '+12068180891'
 
 
-
-
 def txtself(message):
     """
-    This is a function that sends a message to our phone numbers
+    This is a function that sends a message to both of our phone numbers
     """
     twilioCli.messages.create(body= f'{message}', from_= myTwilioNumber, to= myCellPhone)
     twilioCli.messages.create(body= f'{message}', from_= myTwilioNumber, to= myCellPhone2)

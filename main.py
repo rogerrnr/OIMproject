@@ -1,4 +1,4 @@
-from twitter import get_tweets, filter_stock_tweets
+from twitter import get_tweets, filter_stock_tweets, notify_users
 from config import (
     bearer_token,
     consumer_key,
@@ -8,6 +8,7 @@ from config import (
 )
 import time
 import tweepy
+from smsSender import txtself
 
 twitter = tweepy.Client(
     bearer_token=bearer_token,
@@ -17,10 +18,6 @@ twitter = tweepy.Client(
 
 """Cache for latest tweet id's per account handle. handle(string) -> id(string)"""
 latest_tweets = {}
-
-
-def notify_users(tweet):
-    print(f"https://twitter.com/charliebilello/status/{tweet.id}")
 
 
 def poll_handle(handle):
@@ -35,7 +32,8 @@ def poll_handle(handle):
 
     # Updates most recent tweet for user. Necessary to avoid repeat notifications for same tweet
     latest_tweets[handle] = tweets[0].id
-    return list(map(notify_users, filter_stock_tweets(tweets)))
+    for tweet in filter_stock_tweets(tweets):
+        notify_users(account_handle=handle, tweet=tweet)
 
 
 def main():

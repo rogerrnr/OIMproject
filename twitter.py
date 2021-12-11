@@ -1,3 +1,4 @@
+from smsSender import txtself
 from stock import extract_tickers
 
 
@@ -22,3 +23,11 @@ def filter_stock_tweets(tweets):
     """
     tweet_has_tickers = lambda tweet: len(extract_tickers(tweet.text)) > 0
     return list(filter(tweet_has_tickers, tweets))
+
+
+def notify_users(account_handle, tweet):
+    tickers = ", ".join(extract_tickers(tweet.text))
+    link = f"https://twitter.com/elonmusk/status/{tweet.id}"
+    message = f"New tweet about {tickers} from @{account_handle}! {link}"
+    print(message)
+    return txtself(message)

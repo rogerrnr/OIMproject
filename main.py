@@ -21,6 +21,11 @@ latest_tweets = {}
 
 
 def poll_handle(handle):
+    """Polls twitter handle for new tweets about stocks. Notifies users if such tweets are found.
+
+    Args:
+        handle (string): twitter account handle
+    """
     tweets = get_tweets(
         twitter_v2=twitter,
         query=f"from:{handle}",

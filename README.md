@@ -1,8 +1,21 @@
 # OIMproject
 
-Project
+## Getting Started
 
-`pip install -r requirements.txt`
+```bash
+# Create and activate python virtual environment, if desired.
+
+# Install project dependencies
+pip install -r requirements.txt
+
+# Configure environment variables for Twitter/Twilio secret keys in .env file.
+# See all required variables in config.py
+
+# Start program using desired launcher/runner
+python3 main.py
+```
+
+## Planning
 
 **The Big Idea: What is the main idea of your project? What topics will you explore and what will you generate? What is your minimum viable product? What is a stretch goal?**
 

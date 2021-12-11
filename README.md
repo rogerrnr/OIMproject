@@ -15,6 +15,10 @@ pip install -r requirements.txt
 python3 main.py
 ```
 
+## Output Preview
+
+![Output Preview](output.png)
+
 ## Planning
 
 **The Big Idea: What is the main idea of your project? What topics will you explore and what will you generate? What is your minimum viable product? What is a stretch goal?**
